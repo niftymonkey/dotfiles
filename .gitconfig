@@ -15,6 +15,9 @@
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
 
+	# Force push
+	fp = push -f
+
 	# Clone a repository including all submodules
 	c = clone --recursive
 
@@ -28,6 +31,14 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+
+  # When you want to remove a file or directory from the set of changes that are staged for commit
+  remove = reset --
+
+  # Reset and sync local repository with remote branch
+  # http://www.ocpsoft.org/tutorials/git/reset-and-sync-local-respository-with-remote-branch/
+  resetorigin = !git fetch origin && git reset --hard origin/master && git clean -f -d
+  resetupstream = !git fetch upstream && git reset --hard upstream/master && git clean -f -d
 
 	# Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
@@ -43,6 +54,9 @@
 
 	# Find tags containing commit
 	ft = "!f() { git describe --always --contains $1; }; f"
+
+	# Find commits containing file
+	ff = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --all $1; }; f"
 
 	# Find commits by source code
 	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
@@ -69,6 +83,9 @@
 		fi \
 	}; f"
 
+  # This is a colorized version of branch list including hashes, messages, ordered descending based on commit date, with the relative age of the last commit on each branch
+	br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:cyan)%(objectname:short)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
@@ -77,7 +94,7 @@
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/mlozano/.gitignore
 	attributesfile = ~/.gitattributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -92,6 +109,7 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
+	editor = subl -n -w
 
 [color]
 
@@ -161,3 +179,15 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	name = Mark Lozano
+	email = mlozano@atlassian.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree-Alpha.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/

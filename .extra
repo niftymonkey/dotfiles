@@ -1,0 +1,22 @@
+# Spotify Update Status in Stride
+alias spottystatus="TOKEN=eyJraWQiOiJzZXNzaW9uLXNlcnZpY2VcL3Nlc3Npb24tc2VydmljZSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1NTcwNTc6ZjEzZGNkZWUtMTNlMi00MmFiLWI5NWEtMzljZjA4ZDM5Yjk4IiwiYXVkIjoiYXRsYXNzaWFuIiwiaW1wZXJzb25hdGlvbiI6W10sIm5iZiI6MTUwNjA0NjgxOCwicmVmcmVzaFRpbWVvdXQiOjE1MDYwNDc0MTgsImlzcyI6InNlc3Npb24tc2VydmljZSIsInNlc3Npb25JZCI6IjRmMzI0OTlmLTg1ZjItNGM0OS05Y2E1LWYzMDY3Y2QyNWM5MyIsImV4cCI6MTUwODYzODgxOCwiaWF0IjoxNTA2MDQ2ODE4LCJlbWFpbCI6Im1sb3phbm9AYXRsYXNzaWFuLmNvbSIsImp0aSI6IjRmMzI0OTlmLTg1ZjItNGM0OS05Y2E1LWYzMDY3Y2QyNWM5MyJ9.qvFhYZgdXtQuDNUkQ6FlML71Qu4pBE2Q2RT6Ds3Mhqd2Wyq924Ggii145KMHEzhzEZ23fVCrw1l8kky_5wl2f_MwTaSYkm2JVYtN5m0lBB_RAhIVAcc5ejW02OJwH9-hdUncvEVkgbcAV1PeLgLWNzxZH6uKUufqzaFt7Lut2icEd8K9OXiGqWFTpNQOKHs2SKZ7PprWNt7GlxlBdQbv3bNIJNDWsrOOyQQozwK5A_G3HrT5o73klOemFGaSDhhRb5nbAZ-i0iwpZnQxoe4owVL2CqE6F-zNPMtgFuAFYIGUZU4zyLAzH_bi3gbOlBxQKmPMvzTqovM_AIVJ94qMIA CLOUD_ID=a436116f-02ce-4520-8fbb-7301462a1674 node app.js"
+
+# Git stuff
+alias g="git"
+alias gcm="git checkout master"
+alias gdm="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
+alias git-delete-merged="gdm"
+
+# Edit this aliases file in sublime
+alias subl-al="subl ~/.aliases"
+
+# Source this aliases file
+alias source-al="source ~/.aliases"
+
+# Unsecure Chrome (Chrome with disable security flag)
+alias uc="open -n /Applications/Google\ Chrome.app --args --disable-web-security"
+# Unsecure Safari (Safari with disable security flag)
+alias us="open -a '/Applications/Safari.app' --args --disable-web-security"
+
+# Because sometimes my mac stops seeing my camera
+alias camreset="sudo killall VDCAssistant && sudo killall AppleCameraAssistant"
